@@ -348,7 +348,7 @@ class OnlinePlayActivity : BasePlayActivity() {
             }
     }
 
-    private fun replaceUPOS(uri: String) {
+    private fun replaceUPOS(uri: String): String {
         val base = Uri.parse(uri)
         val r = Uri.Builder()
                 .scheme("https")
