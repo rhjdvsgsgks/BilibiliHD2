@@ -54,6 +54,7 @@ import io.github.duzhaokun123.androidapptemplate.utils.*
 import kotlinx.coroutines.delay
 import com.hiczp.bilibili.api.app.model.View as BiliView
 import android.util.Log
+import io.github.duzhaokun123.codegen.Settings
 
 class OnlinePlayActivity : BasePlayActivity() {
     companion object {
@@ -347,6 +348,13 @@ class OnlinePlayActivity : BasePlayActivity() {
             }
     }
 
+    private fun replaceUPOS(uri: Uri) {
+        val base = Uri.parse(uri)
+        return Uri.Builder().scheme("https").encodedAuthority(Settings.upos_host)
+                .encodedPath(base.encodedPath)
+                .encodedQuery(base.encodedQuery)
+    }
+
     private fun setVideoPlayUrl(videoPlayUrl: VideoPlayUrl, v2: PlayerV2) {
         if (videoPlayUrl.data.dash == null) {
             TipUtil.showTip(this, "不支持的形式")
@@ -361,11 +369,15 @@ class OnlinePlayActivity : BasePlayActivity() {
         videoPlayUrl.data.dash!!.let { dash ->
             dash.video.forEach {
                 Log.w("OnlinePlayActivity", "dash.video "+it.baseUrl)
-                sources.add(mediaSourceFactory.createMediaSource(MediaItem.fromUri(it.baseUrl)))
+                val newuri = replaceUPOS(it.baseUrl)
+                Log.w("OnlinePlayActivity", "dash.video new "+newuri)
+                sources.add(mediaSourceFactory.createMediaSource(MediaItem.fromUri(newuri)))
             }
             dash.audio?.forEach {
                 Log.w("OnlinePlayActivity", "dash.audio "+it.baseUrl)
-                sources.add(mediaSourceFactory.createMediaSource(MediaItem.fromUri(it.baseUrl)))
+                val newuri = replaceUPOS(it.baseUrl)
+                Log.w("OnlinePlayActivity", "dash.audio new "+newuri)
+                sources.add(mediaSourceFactory.createMediaSource(MediaItem.fromUri(newuri)))
             }
             v2.data?.subtitle?.subtitles?.forEach { subtitle ->
                 sources.add(SingleSampleMediaSource.Factory(dataSourceFactory)
