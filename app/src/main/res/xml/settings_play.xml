@@ -15,4 +15,10 @@
         app:key="onlinePlayQuality"
         app:title="默认画质"
         app:useSimpleSummaryProvider="true" />
+    <com.takisoft.preferencex.EditTextPreference
+        app:defaultValue=""
+        app:iconSpaceReserved="false"
+        app:key="upos_host"
+        app:title="upos host"
+        app:useSimpleSummaryProvider="true" />
 </PreferenceScreen>
