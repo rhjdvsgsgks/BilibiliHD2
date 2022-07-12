@@ -350,9 +350,12 @@ class OnlinePlayActivity : BasePlayActivity() {
 
     private fun replaceUPOS(uri: String) {
         val base = Uri.parse(uri)
-        return Uri.Builder().scheme("https").encodedAuthority(Settings.upos_host)
+        return Uri.Builder()
+                .scheme("https")
+                .encodedAuthority("127.0.0.1")
                 .encodedPath(base.encodedPath)
-                .encodedQuery(base.encodedQuery).toString()
+                .encodedQuery(base.encodedQuery)
+                .toString()
     }
 
     private fun setVideoPlayUrl(videoPlayUrl: VideoPlayUrl, v2: PlayerV2) {
