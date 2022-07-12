@@ -1,8 +1,7 @@
 name: Android CI
 
 on:
-  push:
-    branches: [ main ]
+  push
 
 jobs:
   build_release:
@@ -32,9 +31,6 @@ jobs:
           key: gradle-builds-${{ github.sha }}
           restore-keys: gradle-builds
       - name: Build with Gradle
-        env:
-          REL_KEY: ${{ secrets.REL_KEY }}
-          APP_SECRET: ${{ secrets.APP_SECRET }}
         run: |
           bash ./gradlew assembleRelease
       - name: Rename
@@ -53,23 +49,6 @@ jobs:
         with:
           name: mapping.txt
           path: ${{ github.workspace }}/app/build/outputs/mapping/release/mapping.txt
-      - name: Upload to JianGuonYun
-        run: curl -T ${{ env.APK_FILE }} --user "${{ secrets.JG_USN }}:${{ secrets.JG_PSW }}" "https://dav.jianguoyun.com/dav/BilibiliHD2/"
-      - name: Setup python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.x'
-      - name: Publish to LanZou
-        env:
-          LZ_YLOGIN: ${{ secrets.LZ_YLOGIN }}
-          LZ_PHPDISK_INFO: ${{ secrets.LZ_PHPDISK_INFO }}
-        run: |
-          pip3 install lanzou-api --upgrade
-          python3 script/upload_to_lanzou.py ${{ env.APK_FILE }}
-#      - name: Setup appcenter-cli
-#        run: |
-#          npm install -g appcenter-cli
-#      - name: Upload mapping.txt to AppCenter
 
 
   build_debug:
@@ -99,9 +78,6 @@ jobs:
           key: gradle-builds-${{ github.sha }}
           restore-keys: gradle-builds
       - name: Build with Gradle
-        env:
-          REL_KEY: ${{ secrets.REL_KEY }}
-          APP_SECRET: ${{ secrets.APP_SECRET }}
         run: |
           bash ./gradlew assembleDebug
       - name: Upload built apk
@@ -110,5 +86,3 @@ jobs:
         with:
           name: BilibiliHD2_debug_${{ env.VERSION }}.apk
           path: ${{ github.workspace }}/app/build/outputs/apk/debug/app-debug.apk
-      - name: Upload to JianGuonYun
-        run: curl -T ${{ github.workspace }}/app/build/outputs/apk/debug/app-debug.apk --user "${{ secrets.JG_USN }}:${{ secrets.JG_PSW }}" "https://dav.jianguoyun.com/dav/BilibiliHD2/"
