@@ -371,13 +371,13 @@ class OnlinePlayActivity : BasePlayActivity() {
                 Log.w("OnlinePlayActivity", "dash.video "+it.baseUrl)
                 val newuri = replaceUPOS(it.baseUrl)
                 Log.w("OnlinePlayActivity", "dash.video new "+newuri)
-                sources.add(mediaSourceFactory.createMediaSource(MediaItem.fromUri(newuri)))
+                sources.add(mediaSourceFactory.createMediaSource(MediaItem.fromUri(if(Settings.upos_host.isNullOrEmpty()) it.baseUrl else newuri)))
             }
             dash.audio?.forEach {
                 Log.w("OnlinePlayActivity", "dash.audio "+it.baseUrl)
                 val newuri = replaceUPOS(it.baseUrl)
                 Log.w("OnlinePlayActivity", "dash.audio new "+newuri)
-                sources.add(mediaSourceFactory.createMediaSource(MediaItem.fromUri(newuri)))
+                sources.add(mediaSourceFactory.createMediaSource(MediaItem.fromUri(if(Settings.upos_host.isNullOrEmpty()) it.baseUrl else newuri)))
             }
             v2.data?.subtitle?.subtitles?.forEach { subtitle ->
                 sources.add(SingleSampleMediaSource.Factory(dataSourceFactory)
