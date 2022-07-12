@@ -53,6 +53,7 @@ import io.github.duzhaokun123.androidapptemplate.bases.BaseActivity
 import io.github.duzhaokun123.androidapptemplate.utils.*
 import kotlinx.coroutines.delay
 import com.hiczp.bilibili.api.app.model.View as BiliView
+import android.util.Log
 
 class OnlinePlayActivity : BasePlayActivity() {
     companion object {
@@ -359,9 +360,11 @@ class OnlinePlayActivity : BasePlayActivity() {
         val mediaSourceFactory = ProgressiveMediaSource.Factory(dataSourceFactory)
         videoPlayUrl.data.dash!!.let { dash ->
             dash.video.forEach {
+                Log.w("OnlinePlayActivity", "dash.video "+it.baseUrl)
                 sources.add(mediaSourceFactory.createMediaSource(MediaItem.fromUri(it.baseUrl)))
             }
             dash.audio?.forEach {
+                Log.w("OnlinePlayActivity", "dash.audio "+it.baseUrl)
                 sources.add(mediaSourceFactory.createMediaSource(MediaItem.fromUri(it.baseUrl)))
             }
             v2.data?.subtitle?.subtitles?.forEach { subtitle ->
