@@ -80,3 +80,6 @@ val onlinePlayQuality = -1
 
 @SettingsValue("false")
 val playerDebug = false
+
+@SettingsValue("")
+val upos_host = ""
