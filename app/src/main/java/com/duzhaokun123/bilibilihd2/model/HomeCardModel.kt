@@ -46,15 +46,6 @@ data class HomeCardModel(
                         badge = item.coverBadge
                         isAd = false
                     }
-                    "cm_v1" -> {
-                        item.adInfo?.creativeContent?.let { creativeContent ->
-                            title = "cm_v1"
-                            desc = creativeContent.description
-                            coverUrl = creativeContent.imageUrl
-                            uri = creativeContent.url
-                            isAd = item.adInfo!!.isAd
-                        }
-                    }
                     "three_item_h_v3" -> {
                         title = item.title
                         desc = item.desc
