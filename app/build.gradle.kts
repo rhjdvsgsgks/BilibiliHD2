@@ -130,8 +130,8 @@ dependencies {
     implementation("com.takisoft.preferencex:preferencex-simplemenu:1.1.0")
 
     //kotlinx-coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
     //AnnotationProcessor
     compileOnly(project(":annotation-processor"))
@@ -185,7 +185,7 @@ dependencies {
     implementation("com.squareup.picasso:picasso:2.71828")
 
     //player
-    val exoplayerVersion = "2.18.0"
+    val exoplayerVersion = "2.18.1"
     implementation("com.google.android.exoplayer:exoplayer-core:$exoplayerVersion")
     implementation("com.google.android.exoplayer:exoplayer-ui:$exoplayerVersion")
     implementation("com.github.duzhaokun123:DanmakuView:ed76ba7ad5")
