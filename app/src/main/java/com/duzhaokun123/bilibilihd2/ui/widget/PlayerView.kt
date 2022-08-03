@@ -42,6 +42,7 @@ class PlayerView @JvmOverloads constructor(
 
     init {
         setBackgroundColor(Color.BLACK)
+        setKeepScreenOn(true)
         if (isInEditMode.not()) {
             exoFullscreen = findViewById(R.id.exo_fullscreen)
             setFullscreenButtonClickListener {
