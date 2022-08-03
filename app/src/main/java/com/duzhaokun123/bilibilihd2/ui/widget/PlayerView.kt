@@ -23,6 +23,7 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.trackselection.TrackSelectionOverride
 import com.google.android.exoplayer2.ui.StyledPlayerView
+import com.google.android.exoplayer2.PlaybackParameters
 import com.google.android.material.button.MaterialButton
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
