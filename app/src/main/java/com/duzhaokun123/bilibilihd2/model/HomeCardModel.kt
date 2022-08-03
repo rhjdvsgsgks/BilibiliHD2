@@ -48,7 +48,7 @@ data class HomeCardModel(
                     }
                     "cm_v1" -> {
                         item.adInfo?.creativeContent?.let { creativeContent ->
-                            title = creativeContent.title
+                            title = "cm_v1"
                             desc = creativeContent.description
                             coverUrl = creativeContent.imageUrl
                             uri = creativeContent.url
