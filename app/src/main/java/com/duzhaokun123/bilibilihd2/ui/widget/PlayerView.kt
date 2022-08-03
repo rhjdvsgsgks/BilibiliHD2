@@ -43,6 +43,7 @@ class PlayerView @JvmOverloads constructor(
     init {
         setBackgroundColor(Color.BLACK)
         if (isInEditMode.not()) {
+            (player as ExoPlayer).setPlaybackParameters(PlaybackParameters(2.0f))
             exoFullscreen = findViewById(R.id.exo_fullscreen)
             setFullscreenButtonClickListener {
                 isFullScreen = it
@@ -58,7 +59,6 @@ class PlayerView @JvmOverloads constructor(
                     trackSelectorBinding.root.removeFromParent()
                 }
                 val trackSelector = (player as ExoPlayer).trackSelector as DefaultTrackSelector
-                (player as ExoPlayer).setPlaybackParameters(PlaybackParameters(2.0f))
                 val renderers = (0 until  (trackSelector.currentMappedTrackInfo?.rendererCount ?: 0)).map { i ->
                     trackSelector.currentMappedTrackInfo?.getRendererName(i)
                 }.toTypedArray()
