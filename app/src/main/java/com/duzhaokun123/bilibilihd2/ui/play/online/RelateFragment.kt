@@ -86,7 +86,7 @@ data class Relate(
                 val title = biliRelate.title
                 val cover = biliRelate.pic
                 val duration = biliRelate.duration.takeIf { it != 0 }?.let { DateFormat.getStringForTime(it * 1000L) } ?: ""
-                val l1 = biliRelate.owner?.name.takeUnless { it.isNullOrEmpty() }?.let { "up:$it" }?: "ad"
+                val l1 = biliRelate.owner?.name.takeUnless { it.isNullOrEmpty() }?.let { "up:$it" }?: return@forEach
                 val l2 = biliRelate.stat.view.takeIf { it != 0 }?.let { "play:$it danmaku:${biliRelate.stat.danmaku}" } ?: ""
                 val url = biliRelate.uri
                 re.add(Relate(title, cover, duration, l1, l2, url))
