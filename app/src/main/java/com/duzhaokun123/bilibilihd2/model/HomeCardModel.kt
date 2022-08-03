@@ -46,6 +46,9 @@ data class HomeCardModel(
                         badge = item.coverBadge
                         isAd = false
                     }
+                    "cm_v1" -> {
+                        return@forEach
+                    }
                     "three_item_h_v3" -> {
                         title = item.title
                         desc = item.desc
